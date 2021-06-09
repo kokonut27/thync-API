@@ -88,15 +88,25 @@ thync_dark = thync({
   "default": "dark"
 })
 
-
 @app.route("/")
 def index():
+  return render_template("index.html")
+
+
+@app.route("/toggle")
+def toggle():
   if int(cur_time) >= 12:
     for n, v in COLORS["dark"].items():
       thync_dark.set_color(n, "black")
     thync_dark.build("thync.min.js")
+    f = open("thync.min.js")
   else:
     thync_light.build("thync.min.js")
-  return render_template("index.html")
+    f = open("thync.min.js")
+  f = f.read()
+  return render_template(
+    "toggle.html",
+    file=f
+  )
 
 app.run(host="0.0.0.0", port=8080)
