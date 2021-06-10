@@ -8,6 +8,9 @@ This was originally created just for the thync Bot, a discord bot that syncs wit
 
 > Also, thyncAPI does not currently work with `requests` yet. It will soon on the next release.
 
+## Using it
+To use it, as of right now, you have to open up [this](https://thync-API.jbloves27.repl.co/toggle), and then follow the instructions. `requests` will be available soon.
+
 ## Suggestions and contribute
 To leave suggestions, just leave a comment or a PR. To contribute, leave a PR or an issue to ask.
 
