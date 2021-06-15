@@ -30,4 +30,4 @@ You can either print or return, depending on how you'll use it. Then copy the co
 To leave suggestions, just leave a comment or a PR. To contribute, leave a PR or an issue to ask.
 
 ## Conclusion
-I hope you enjoy using this API! See you on the next post!
+I hope you enjoy using this API! See you on the next (thync) post!
