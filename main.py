@@ -90,7 +90,7 @@ thync_dark = thync({
 
 @app.route("/")
 def index():
-  return render_template("index.html")
+  return "thyncAPI"
 
 
 @app.route("/toggle")
