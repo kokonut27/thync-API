@@ -106,7 +106,8 @@ def toggle():
   f = f.read()
   return render_template(
     "toggle.html",
-    file=f
+    file=f,
+    mimetype = "text/plain"
   )
 
 app.run(host="0.0.0.0", port=8080)
