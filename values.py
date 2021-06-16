@@ -2,6 +2,9 @@ CSS = """!!syntax!!.replit-ui-theme-root.dark{!!css!!}.replit-ui-theme-root.ligh
 
 JS = """javascript:(function() {let theme = document.getElementById("thync-theme");let display = document.getElementById("thync-display");if (theme && display) {var go = confirm("Are you sure you want to switch Replit themes?");if (go) {theme.remove();display.remove();alert("This Replit theme has been stopped.");}} else {var go = confirm("Run this thync theme?\\n\\nName: !name!\\nDescription: !description!");if (go) {var style = document.createElement("style");var head = document.getElementsByTagName("head")[0];var target = document.getElementsByClassName("jsx-2607100739")[0];style.setAttribute("id", "thync-theme");style.appendChild(document.createTextNode(`!css!`));if (target) {target.insertAdjacentHTML("afterend", `<a id="thync-display" class="jsx-2607100739" target="_blank" href="//github.com/JBYT27/thync"><span class="jsx-2607100739 sidebar-layout-nav-item-icon"><img src="https://www.pngkey.com/png/full/117-1175359_graphic-transparent-internet-clipart-cloud-computing-does-cloud.png" alt="cloud images"/></span><div class="jsx-2607100739">thync</div><div class="jsx-2607100739 beta-label"><div style="background-color: #6262ff;" class="jsx-4210545632 beta-tag">ON</div></div></a>`);} else {alert("thync badge could not be applied.");}head.appendChild(style);alert("thync has been turned on!");} else {alert("thync has been cancelled.");}}})();"""
 
+# Dark: `javascript:(function() {document.body.className = "replit-ui-theme-root dark"})();`
+# Light: `javascript:(function() {document.body.className = "replit-ui-theme-root light")();`
+
 BASE_TOKENS = [f"span.mtk{n}" for n in range(8)]
 
 TOKENS = [
