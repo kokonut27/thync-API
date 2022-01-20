@@ -48,33 +48,28 @@ class thync(object):
     def build(self, path, mode="w+"):
         js = JS
         css = ""
-        file = open(path, mode)
+        with open(path, mode) as file:
+            for n, v in self.obj["colors"].items():
+                css += f"--color-{n}: {v} !important;"
 
-        for n, v in self.obj["colors"].items():
-            css += f"--color-{n}: {v} !important;"
-        
-        for n, v in self.obj.items():
-            if not isinstance(v, dict):
-                js = js.replace(f"!{n}!", str(v))
-            else:
-              pass
+            for n, v in self.obj.items():
+                if not isinstance(v, dict):
+                    js = js.replace(f"!{n}!", str(v))
+            css = (
+                CSS
+                .replace("!!css!!", css)
+                .replace("!!syntax!!", self.obj["code"])
+            )
+            js = (
+                js
+                .replace("!css!", css)
+                .replace("\n", "")
+                .replace("\t", "")
+                .replace("    ", "")
+                .replace(" = ", "=")
+            )
 
-        css = (
-            CSS
-            .replace("!!css!!", css)
-            .replace("!!syntax!!", self.obj["code"])
-        )
-        js = (
-            js
-            .replace("!css!", css)
-            .replace("\n", "")
-            .replace("\t", "")
-            .replace("    ", "")
-            .replace(" = ", "=")
-        )
-
-        file.write(js)
-        file.close()
+            file.write(js)
         return True
 
 thync_light = thync({
@@ -95,19 +90,18 @@ def index():
 
 @app.route("/toggle")
 def toggle():
-  if int(cur_time) >= 12:
-    for n, v in COLORS["dark"].items():
-      thync_dark.set_color(n, "black")
-    thync_dark.build("thync.min.js")
+    if int(cur_time) >= 12:
+        for n, v in COLORS["dark"].items():
+          thync_dark.set_color(n, "black")
+        thync_dark.build("thync.min.js")
+    else:
+        thync_light.build("thync.min.js")
     f = open("thync.min.js")
-  else:
-    thync_light.build("thync.min.js")
-    f = open("thync.min.js")
-  f = f.read()
-  return render_template(
-    "toggle.html",
-    file=f,
-    mimetype = "text/plain"
-  )
+    f = f.read()
+    return render_template(
+      "toggle.html",
+      file=f,
+      mimetype = "text/plain"
+    )
 
 app.run(host="0.0.0.0", port=8080)
